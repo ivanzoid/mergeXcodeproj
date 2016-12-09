@@ -34,7 +34,7 @@ main()
 
 	DIR="$1"
 
-	PROJECT = $( find "$DIR" -name "*.xcodeproj" -print -quit )
+	PROJECT=$( find "$DIR" -name "*.xcodeproj" -print -quit )
 
 	if [ -z $PROJECT ]; then
 		echo "No xcodeproj found. Quitting."
