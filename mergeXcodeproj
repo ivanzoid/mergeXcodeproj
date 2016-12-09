@@ -1,0 +1,50 @@
+#!/bin/bash
+
+usage()
+{
+
+    echo '
+This script will merge Xcode project in supplied directory with remote one in case of git merge conflict.
+
+Usage:
+	mergeXcodeproj <directory>
+'
+
+    exit 0
+}
+
+program_exists ()
+{
+	type "$1" &> /dev/null ;
+}
+
+main()
+{
+	set -eo pipefail
+
+	if [ "$#" -lt 1 ]; then
+		usage
+		exit
+	fi
+
+	if ! program_exists mergepbx; then
+		echo "Please install mergepbx"
+		exit 1
+	fi
+
+	DIR="$1"
+
+	PROJECT = $( find "$DIR" -name "*.xcodeproj" -print -quit )
+
+	if [ -z $PROJECT ]; then
+		echo "No xcodeproj found. Quitting."
+		exit
+	fi
+
+	git mergetool --tool=mergepbx "${DIR}/${PROJECT}/project.pbxproj"
+	rm "${DIR}/${PROJECT}/project.pbxproj.orig"
+
+	echo "Done."
+}
+
+main "$@"
