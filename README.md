@@ -11,3 +11,6 @@ This script will merge Xcode project in supplied directory with remote one in ca
 [mergetool "mergepbx"]
     cmd = mergepbx "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
 ```
+
+# Usage
+After git conflict, run `$ mergeXcodeproj .` in folder which contains .xcodeproj.
