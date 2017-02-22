@@ -13,4 +13,6 @@ This script will merge Xcode project in supplied directory with remote one in ca
 ```
 
 # Usage
-After git conflict, run `$ mergeXcodeproj .` in folder which contains .xcodeproj.
+After git conflict, run  
+`$ mergeXcodeproj .`  
+in folder which contains .xcodeproj.
